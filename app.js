@@ -7,17 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 버튼 클릭 시 To-Do 항목 추가
   $addButton.addEventListener("click", () => {
-    const todoContent = $todoInput.value.trim();
-
-    if (todoContent) {
-      const todoItem = new TodoItem(todoContent);
-      const $todoItemElement = todoItem.createElement()
-
-      $todoList.append($todoItemElement);
-      $todoInput.value = "";
-    } else {
+    if (!$todoInput.value.trim()) {
       alert("할 일을 입력하세요!");
+      return;
     }
+    
+    const todoContent = $todoInput.value.trim();
+    const todoItem = new TodoItem(todoContent);
+    const $todoItemElement = todoItem.createElement();
+
+    $todoList.append($todoItemElement);
+    $todoInput.value = "";
   });
 
   // Enter 키로 To-DO 항목 추가
