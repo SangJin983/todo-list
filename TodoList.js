@@ -1,4 +1,4 @@
-export class TodoItem {
+export class TodoList {
   #content;
 
   constructor(content) {
@@ -6,12 +6,12 @@ export class TodoItem {
   }
 
   createElement() {
-    const $todoItem = document.createElement("li");
+    const $todoList = document.createElement("li");
 
-    $todoItem.textContent = this.#content;
-    $todoItem.append(this.#createDeleteButton());
+    $todoList.textContent = this.#content;
+    $todoList.append(this.#createDeleteButton());
 
-    return $todoItem;
+    return $todoList;
   }
 
   #createDeleteButton() {

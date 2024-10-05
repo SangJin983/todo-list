@@ -1,22 +1,21 @@
-import { TodoItem } from "./TodoItem.js";
+import { TodoBoard } from "./TodoBoard.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const $todoInput = document.querySelector(".todo-input");
   const $addButton = document.querySelector(".add-button");
-  const $todoList = document.querySelector(".todo-list");
+  const $todoBoard = document.querySelector(".todo-board");
+  const todoBoard = new TodoBoard($todoBoard)
 
   // 버튼 클릭 시 To-Do 항목 추가
   $addButton.addEventListener("click", () => {
-    if (!$todoInput.value.trim()) {
+    const todoContent = $todoInput.value.trim();
+
+    if (!todoContent) {
       alert("할 일을 입력하세요!");
       return;
     }
     
-    const todoContent = $todoInput.value.trim();
-    const todoItem = new TodoItem(todoContent);
-    const $todoItemElement = todoItem.createElement();
-
-    $todoList.append($todoItemElement);
+    todoBoard.addTodoList(todoContent);
     $todoInput.value = "";
   });
 
