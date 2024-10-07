@@ -1,18 +1,18 @@
-import { TodoBoard } from "./TodoBoard.js";
+import { getTodoInput, getAddButton, initializeDom } from "./TodoUtils.js";
 
 export class TodoApp {
   #$todoInput;
   #$addButton;
-  #$todoBoard;
   #todoBoard;
 
-  constructor() {
-    this.#$todoInput = document.querySelector(".todo-input");
-    this.#$addButton = document.querySelector(".add-button");
-    this.#$todoBoard = document.querySelector(".todo-board");
+  constructor(board) {
+    initializeDom(() => {
+      this.#$todoInput = getTodoInput();
+      this.#$addButton = getAddButton();
+      this.#todoBoard = board;
 
-    this.#todoBoard = new TodoBoard(this.#$todoBoard);
-    this.#initialize();
+      this.#initialize();
+    });
   }
 
   #initialize() {
@@ -36,5 +36,5 @@ export class TodoApp {
     if (event.key === "Enter") {
       this.#$addButton.click();
     }
-  }
+  };
 }

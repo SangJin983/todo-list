@@ -1,15 +1,16 @@
-import { TodoList } from "./TodoList.js";
+import { getTodoBoard } from "./TodoUtils.js"
 
 export class TodoBoard {
   #board;
+  #listFactory;
 
-  constructor(board) {
-    this.#board = board;
+  constructor(listFactory) {
+    this.#board = getTodoBoard();
+    this.#listFactory = listFactory;
   }
 
   addTodoList(content) {
-    const todoList = new TodoList(content);
-    const todoListElement = todoList.createElement();
+    const todoListElement = this.#listFactory.createElement(content);
     this.#board.append(todoListElement);
   }
 }
