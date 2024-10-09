@@ -1,4 +1,4 @@
-import { getTodoBoard } from "./TodoUtils.js"
+import { getTodoBoard } from "./TodoUtils.js";
 
 export class TodoBoard {
   #board;
@@ -9,8 +9,17 @@ export class TodoBoard {
     this.#listFactory = listFactory;
   }
 
-  addTodoList(content) {
-    const todoListElement = this.#listFactory.createElement(content);
+  addTodoList(content, onDeleteCallback) {
+    const todoListElement = this.#listFactory.createElement(
+      content,
+      onDeleteCallback
+    );
     this.#board.append(todoListElement);
+  }
+
+  getTodos() {
+    return Array.from(this.#board.children)
+      .map((todo) => todo.textContent.replace("삭제", "").trim())
+      .filter((todo) => todo !== "");
   }
 }

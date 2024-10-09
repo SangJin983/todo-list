@@ -1,27 +1,28 @@
-export class TodoList {
-  createElement(content) {
+export class TodoListElementFactory {
+  createElement(content, onDeleteCallback) {
     const $todoList = document.createElement("li");
 
     $todoList.textContent = content;
-    $todoList.append(this.#createDeleteButton());
+    $todoList.append(this.#createDeleteButton(onDeleteCallback));
 
     return $todoList;
   }
 
-  #createDeleteButton() {
+  #createDeleteButton(onDeleteCallback) {
     const $deleteButton = document.createElement("button");
 
     $deleteButton.textContent = "삭제";
     $deleteButton.className = "delete";
 
-    this.#addDeleteEventListener($deleteButton);
+    this.#addDeleteEventListener($deleteButton, onDeleteCallback);
 
     return $deleteButton;
   }
 
-  #addDeleteEventListener(button) {
+  #addDeleteEventListener(button, onDeleteCallback) {
     button.addEventListener("click", () => {
       button.parentElement.remove();
+      onDeleteCallback();
     });
   }
 }
