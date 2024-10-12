@@ -1,4 +1,4 @@
-export class TodoList {
+export class TodoListElementFactory {
   createElement(content) {
     const $todoList = document.createElement("li");
 
