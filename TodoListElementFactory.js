@@ -1,3 +1,5 @@
+import { TodoEventBus } from "./TodoEventBus.js";
+
 export class TodoListElementFactory {
   createElement(content) {
     const $todoList = document.createElement("li");
@@ -22,6 +24,7 @@ export class TodoListElementFactory {
   #addDeleteEventListener(button) {
     button.addEventListener("click", () => {
       button.parentElement.remove();
+      TodoEventBus.publish("todoDeleted");
     });
   }
 }
